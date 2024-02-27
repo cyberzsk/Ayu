@@ -1,10 +1,6 @@
 import fetch from 'node-fetch';
+import type { GiphyResponse } from '../interfaces/IGiphyResponse';
 
-interface GiphyResponse {
-    data: any[]; 
-    pagination: any; 
-    meta: any; 
-}
 
 export default class Giphy {
     constructor(private apiKey: string) {}
