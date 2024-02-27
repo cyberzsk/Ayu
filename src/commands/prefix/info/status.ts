@@ -1,12 +1,11 @@
 import { EmbedBuilder, Message, PermissionFlagsBits } from 'discord.js';
-import type { CommandAction } from '../../../handler';
 import SquareCloud from '../../../system/SquareCloud';
 import "dotenv/config"
 import emoji from '../../../settings/bot';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-const statusCommand: CommandAction = async (message) => {
+const statusCommand = async (message: Message) => {
     try {
         const appId: string = process.env.SQAURECLOUD_ID;
         const token: string = process.env.SQUARECLOUD_TOKEN;

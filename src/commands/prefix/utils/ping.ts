@@ -1,12 +1,11 @@
 import { PrismaClient } from "@prisma/client";
-import type { CommandAction } from "../../../handler";
-import { PermissionFlagsBits } from "discord.js";
+import { Message, PermissionFlagsBits } from "discord.js";
 import emoji from "../../../settings/bot";
 
 
 const prisma = new PrismaClient();
 
-const pingCommand: CommandAction = async (message) => {
+const pingCommand = async (message: Message) => {
     const originalMessage = await message.channel.send("Pong 🏓");
 
     const latency = originalMessage.createdTimestamp - message.createdTimestamp;

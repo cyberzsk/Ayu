@@ -1,11 +1,11 @@
-import { EmbedBuilder, PermissionFlagsBits, User } from "discord.js";
-import type { CommandAction } from "../../../handler";
-import Giphy from "../../../system/Giphy";
+import { EmbedBuilder, Message, PermissionFlagsBits, User } from "discord.js";
 import "dotenv/config";
+import Giphy from "../../../system/Giphy";
 import emoji from "../../../settings/bot";
 import getPrefix from "../../../utils/getPrefix";
 
-const hugCommand: CommandAction = async (message) => {
+
+const hugCommand = async (message: Message) => {
     const mentionedUser: User | undefined = message.mentions.users.first();
     const prefix = await getPrefix(message.guild!!.id)
 

@@ -1,10 +1,9 @@
 import { PrismaClient } from "@prisma/client";
-import type { CommandAction } from "../../../handler";
-import { PermissionFlagsBits } from "discord.js";
+import { Message, PermissionFlagsBits } from "discord.js";
 
 const prisma = new PrismaClient();
 
-const setPrefix: CommandAction = async (message, args) => {
+const setPrefix= async (message: Message, args: string) => {
     if (!args || args.length === 0) {
         message.reply("Por favor, forneça um novo prefixo!");
         return;
