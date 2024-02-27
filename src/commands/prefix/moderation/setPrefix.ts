@@ -42,7 +42,7 @@ const setPrefix: CommandAction = async (message, args) => {
             });
         }
 
-        message.reply(`O novo prefixo foi definido para: ${newPrefix}`);
+        message.reply(`O novo prefixo foi definido para: '${newPrefix}'`);
     } catch (error) {
         console.error("Erro ao definir o prefixo:", error);
         message.reply("Ocorreu um erro ao definir o prefixo. Por favor, tente novamente mais tarde.");
