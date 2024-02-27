@@ -34,7 +34,6 @@ export default class Ayu extends Client {
             this.prefixCommandRegistry.registerCommands(this.commandPackage);
         });
     
-
         this.on("messageCreate", async (message) => {
             const prefix = getPrefix(message.guild!!.id)
             this.prefixCommandRegistry.handleCommand(message, await prefix);

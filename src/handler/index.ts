@@ -59,15 +59,15 @@ export default class PrefixCommandRegistry {
             if (!commandName) return; 
             const command = this.commandActions.get(commandName);
             if (command) {
+                const anya = emoji.anya;
                 if (command.isOwnerGuild) {
-                    const anya = emoji.anya;
                     if (message.author.id !== message.guild?.ownerId) {
                         message.reply({ content: `${anya} | Apenas o dono do servidor pode usar este comando!` });
                         return;
                     }
                 } else {
                     if (!message.member?.permissions.has(command.permission)) {
-                        message.reply({ content: "Você não tem permissão para usar este comando!" });
+                        message.reply({ content: `${anya} Você não tem permissão para usar este comando!` });
                         return;
                     }
                 }
