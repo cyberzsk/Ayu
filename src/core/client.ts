@@ -1,11 +1,10 @@
 import { Client, GatewayIntentBits, Message, Partials } from 'discord.js'
-import PrefixCommandRegistry from '../handler';
+import SimpleCommandHandler from '../handler/simpleCommandHandler';
 
 export default class Ayu extends Client {
-    private prefixCommandRegistry: PrefixCommandRegistry;
-    private commandPackage: string;
+    private simpleCommandHandler: SimpleCommandHandler;
 
-    constructor(token: string, commandPackage: string) {
+    constructor(token: string) {
         super({
             intents: [
                 GatewayIntentBits.Guilds,
@@ -20,23 +19,19 @@ export default class Ayu extends Client {
                 Partials.ThreadMember
             ]
         });
-        this.prefixCommandRegistry = new PrefixCommandRegistry();
+        this.simpleCommandHandler = new SimpleCommandHandler();
         this.token = token;
-        this.commandPackage = commandPackage; 
     }
 
     run() {
         this.login(this.token as string);
-        this.on("ready", () => {
+        this.on("ready", async () => {
             this.user?.setActivity({name: `on ${this.guilds.cache.size} servers`})
             console.log(`Entrei como: ${this.user?.username}!`);
-            this.prefixCommandRegistry.registerCommands(this.commandPackage);
+            await this.simpleCommandHandler.loadCommands();
         });
-    
 
-        this.on("messageCreate", (message) => {
-            this.prefixCommandRegistry.handleCommand(message, '?');
-        });
+        this.on("messageCreate", this.simpleCommandHandler.handleCommand);
     
     }
 
