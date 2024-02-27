@@ -1,0 +1,25 @@
+{
+  "name": "ayu",
+  "module": "index.ts",
+  "scripts": {
+    "ayu": "bun run src/index.ts"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prisma": "^5.10.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.10.2",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.11.20",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
