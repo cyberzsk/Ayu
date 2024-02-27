@@ -1,5 +1,6 @@
 import { Client, GatewayIntentBits, Message, Partials } from 'discord.js'
 import PrefixCommandRegistry from '../handler';
+import getPrefix from '../utils/getPrefix';
 
 export default class Ayu extends Client {
     private prefixCommandRegistry: PrefixCommandRegistry;
@@ -34,8 +35,9 @@ export default class Ayu extends Client {
         });
     
 
-        this.on("messageCreate", (message) => {
-            this.prefixCommandRegistry.handleCommand(message, '?');
+        this.on("messageCreate", async (message) => {
+            const prefix = getPrefix(message.guild!!.id)
+            this.prefixCommandRegistry.handleCommand(message, await prefix);
         });
     
     }

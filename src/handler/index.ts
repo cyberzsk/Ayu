@@ -51,15 +51,16 @@ export default class PrefixCommandRegistry {
 
     handleCommand(message: Message, prefix: string): void {
         if (message.author.bot) return;
-
+    
         const content = message.content;
         if (content.startsWith(prefix)) {
-            const args = content.substring(prefix.length).split(/\s+/);
-            const commandName = args[0].toLowerCase();
+            const args = content.slice(prefix.length).trim().split(/ +/);
+            const commandName = args.shift()?.toLowerCase(); 
+            if (!commandName) return; 
             const command = this.commandActions.get(commandName);
             if (command) {
                 if (command.isOwnerGuild) {
-                    const anya = emoji.anya
+                    const anya = emoji.anya;
                     if (message.author.id !== message.guild?.ownerId) {
                         message.reply({ content: `${anya} | Apenas o dono do servidor pode usar este comando!` });
                         return;
@@ -70,9 +71,8 @@ export default class PrefixCommandRegistry {
                         return;
                     }
                 }
-                command.action(message, args.slice(1));
+                command.action(message, args); 
             }
         }
-
     }
 }

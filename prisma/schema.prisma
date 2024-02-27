@@ -18,3 +18,10 @@ model User {
   userid String
   username String
 }
+
+model Guild {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  guildId String @unique
+  guildName String  
+  prefix String
+}
