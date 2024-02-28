@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Message, PermissionFlagsBits } from "discord.js";
+import emoji from "../../../settings/bot";
 
 const prisma = new PrismaClient();
 
@@ -8,7 +9,9 @@ const pingCommand = async (message: Message) => {
 
     const latency = originalMessage.createdTimestamp - message.createdTimestamp;
 
-    originalMessage.edit({ content: `Ping: ${latency}ms` });
+    const network = emoji.network
+
+    originalMessage.edit({ content: `${network} | Ping: **${latency}**ms` });
 
     await prisma.user.create({
         data: {
