@@ -9,7 +9,7 @@ async function getPrefix(guildId: string): Promise<string> {
         });
 
         if (guild) {
-            return guild.prefix;
+            return guild.prefix as string;
         } else {
             return "a?";
         }

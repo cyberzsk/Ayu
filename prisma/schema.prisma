@@ -22,6 +22,7 @@ model User {
 model Guild {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
   guildId String @unique
-  guildName String  
-  prefix String
+  guildName String?  
+  prefix String?
+  ia Boolean?
 }

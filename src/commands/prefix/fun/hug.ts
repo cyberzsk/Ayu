@@ -16,13 +16,12 @@ const hugCommand = async (message: Message) => {
 
     const giphyApiKey = process.env.GIPHYAPI_TOKEN;
     const query = 'anime hug';
-    const limit = 20;
 
     const giphyClient = new Giphy(giphyApiKey);
     const power = emoji.powerhug;
 
     try {
-        const gifs = await giphyClient.searchGifs(query, limit);
+        const gifs = await giphyClient.searchGifs(query);
 
 
         const randomIndex = Math.floor(Math.random() * gifs.length);

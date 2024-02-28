@@ -44,17 +44,17 @@ export default class SimpleCommandHandler {
       const args = message.content.substring(prefix.length).split(/\s+/);
       const commandName = args[0].toLowerCase();
       const command = commands.get(commandName);
+      const anya = emoji.anya;
       if (!command) return;
 
       if (command.isOwnerGuild) {
-        const anya = emoji.anya;
         if (message.author.id !== message.guild?.ownerId) {
           message.reply({ content: `${anya} | Apenas o dono do servidor pode usar este comando!` });
           return;
         }
       } else {
         if (!message.member?.permissions.has(command.permission)) {
-          message.reply({ content: "Você não tem permissão para usar este comando!" });
+          message.reply({ content: "${anya} | Você não tem permissão para usar este comando!" });
           return;
         }
       }

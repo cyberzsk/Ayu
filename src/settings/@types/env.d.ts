@@ -5,5 +5,6 @@ declare namespace NodeJS {
         SQUARECLOUD_TOKEN: string;
         SQAURECLOUD_ID: string;
         GIPHYAPI_TOKEN: string;
+        GEMINIAPI_TOKEN: string;
     }
 }
