@@ -2,10 +2,9 @@ import { type ICommand } from '../interfaces/ICommand';
 import { glob } from 'glob';
 import { Collection, type Message } from 'discord.js';
 import emoji from '../settings/bot';
+import getPrefix from '../utils/getPrefix';
 const { dirname } = require('path');
-
 const appDir = process.env.PWD || dirname(import.meta.require.main?.filename || '');
-const defaultPrefix = "?";
 const commands: Collection<string, ICommand> = new Collection();
 
 export default class SimpleCommandHandler {
@@ -38,21 +37,23 @@ export default class SimpleCommandHandler {
   async handleCommand(message: Message) {
     if (message.author.bot) return;
 
-    if (message.content.startsWith(defaultPrefix)) {
-      const args = message.content.substring(defaultPrefix.length).split(/\s+/);
+    const prefix = await getPrefix(message.guild!!.id)
+
+    if (message.content.startsWith(prefix)) {
+      const args = message.content.substring(prefix.length).split(/\s+/);
       const commandName = args[0].toLowerCase();
       const command = commands.get(commandName);
+      const anya = emoji.anya;
       if (!command) return;
 
       if (command.isOwnerGuild) {
-        const anya = emoji.anya;
         if (message.author.id !== message.guild?.ownerId) {
           message.reply({ content: `${anya} | Apenas o dono do servidor pode usar este comando!` });
           return;
         }
       } else {
         if (!message.member?.permissions.has(command.permission)) {
-          message.reply({ content: "Você não tem permissão para usar este comando!" });
+          message.reply({ content: "${anya} | Você não tem permissão para usar este comando!" });
           return;
         }
       }

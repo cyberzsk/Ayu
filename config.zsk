@@ -1,0 +1,26 @@
+#
+        Configurações pessoais das minhas A.I: 
+#
+
+# Informações do workspace #
+$ "Ayu"
+$ "1571585@"
+
+# Configurações do cliente #
+Kisara_client: "Windows";
+Kisara_prompt: "PowerShell";
+Kisara_UI: "WindowsNTX";
+Kisara_AF: "localhost:2323";
+Krystall_network: "localhost:2323";
+Akari_client: "Windows";
+
+# Configurações da previsão #
+Akari_rate: 1
+Akari_input: "C:\\Akari\\inshell.exe"
+Akari_timeout: 12
+
+# Configurações de rede #
+Krystall_inject: "default"
+Krystall_process: "auto"
+Krystall_client: "IBM_WINDOWS";
+Krystall_redirect: "Windows";
