@@ -2,7 +2,6 @@ import { PrismaClient } from "@prisma/client";
 import { Message, PermissionFlagsBits } from "discord.js";
 import emoji from "../../../settings/bot";
 
-
 const prisma = new PrismaClient();
 
 const pingCommand = async (message: Message) => {
@@ -22,7 +21,6 @@ const pingCommand = async (message: Message) => {
 
     });
 };
-
 
 export default {
     name: 'ping',

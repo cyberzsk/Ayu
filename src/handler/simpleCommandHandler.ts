@@ -4,7 +4,6 @@ import { Collection, type Message } from 'discord.js';
 import emoji from '../settings/bot';
 import getPrefix from '../utils/getPrefix';
 const { dirname } = require('path');
-
 const appDir = process.env.PWD || dirname(import.meta.require.main?.filename || '');
 const commands: Collection<string, ICommand> = new Collection();
 
