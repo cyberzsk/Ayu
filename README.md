@@ -1,3 +1,22 @@
-# ayu
+# Ayu 
+> A simple TypeScript application made for teaching purposes for now.
 
-Em breve...
+## Requirements
+- Application Token - [Discord Developer Portal](https://discord.com/developers);
+- Coffe Cup;
+- Node/burn(*) and a package manager;
+- Don't be a robot;
+
+## How to start?
+- Install dependencies;
+- Configure .env file:
+```sh
+CLIENT_TOKEN=
+DATABASE_URL=
+SQUARECLOUD_TOKEN=
+SQAURECLOUD_ID=
+GIPHYAPI_TOKEN=
+GEMINIAPI_TOKEN=
+```
+
+Join: [CyberZ](https://discord.gg/y9C8PN6r7z)
