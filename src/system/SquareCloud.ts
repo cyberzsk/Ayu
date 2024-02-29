@@ -1,5 +1,5 @@
 export default class SquareCloud {
-    constructor(private appId: string, private authorization: string) {}
+    constructor(private appId: string, private authorization: string) { }
 
     async getAppStatus(): Promise<any> {
         const url = `https://api.squarecloud.app/v2/apps/${this.appId}/status`;

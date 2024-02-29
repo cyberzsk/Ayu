@@ -12,7 +12,15 @@ export default class Gemini {
         const genAI = new GoogleGenerativeAI(process.env.GEMINIAPI_TOKEN);
 
         try {
-            const model = await genAI.getGenerativeModel({ model: "gemini-pro" });
+            const generationConfig = {
+                stopSequences: ["red"],
+                maxOutputTokens: 200,
+                temperature: 0.9,
+                topP: 0.1,
+                topK: 16,
+            };
+
+            const model = genAI.getGenerativeModel({ model: "gemini-pro", generationConfig });
 
             const result = await model.generateContent(this.prompt);
             const response = await result.response;
@@ -25,3 +33,6 @@ export default class Gemini {
         }
     }
 }
+
+
+

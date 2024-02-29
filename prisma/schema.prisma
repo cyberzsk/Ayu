@@ -14,15 +14,28 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  userid String
-  username String
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  userid     String     @unique
+  username   String?
+  blackLists BlackList? @relation(fields: [blackListId], references: [id])
+
+  blackListId String? @db.ObjectId
+}
+
+model BlackList {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  punished Boolean
+  authorId   String?
+  authorName String?
+  punishedId   String? 
+  punishedName String?
+  User     User[]
 }
 
 model Guild {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  guildId String @unique
-  guildName String?  
-  prefix String?
-  ia Boolean?
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  guildId   String   @unique
+  guildName String?
+  prefix    String?
+  ia        Boolean?
 }

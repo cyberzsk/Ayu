@@ -6,5 +6,6 @@ declare namespace NodeJS {
         SQAURECLOUD_ID: string;
         GIPHYAPI_TOKEN: string;
         GEMINIAPI_TOKEN: string;
+        BOT_OWNERID: string;
     }
 }
