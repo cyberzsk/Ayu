@@ -28,9 +28,6 @@ const removeBlackList = async (message: Message, args: string[]) => {
         return message.reply("❌ **|** Você precisa mencionar o usuário ou fornecer um ID válido para adicionar à blacklist.");
     }
 
-    if (target instanceof GuildMember && target.user.bot) {
-        return message.reply({ content: "❌ **|** Você não pode adicionar Bots à minha blacklist." });
-    }
 
     try {
         const userInDB = await prisma.user.findUnique({
