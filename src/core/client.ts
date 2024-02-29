@@ -1,5 +1,6 @@
-import { Client, GatewayIntentBits, Message, Partials } from 'discord.js'
+import { Client, GatewayIntentBits, Partials } from 'discord.js'
 import SimpleCommandHandler from '../handler/simpleCommandHandler';
+
 
 export default class Ayu extends Client {
     private simpleCommandHandler: SimpleCommandHandler;
@@ -11,6 +12,7 @@ export default class Ayu extends Client {
                 GatewayIntentBits.GuildMessages,
                 GatewayIntentBits.MessageContent,
                 GatewayIntentBits.GuildMembers,
+                GatewayIntentBits.MessageContent
             ],
             partials: [
                 Partials.User, Partials.Message,
@@ -23,10 +25,10 @@ export default class Ayu extends Client {
         this.token = token;
     }
 
-    run() {
+    async run() {
         this.login(this.token as string);
         this.on("ready", async () => {
-            this.user?.setActivity({name: `on ${this.guilds.cache.size} servers`})
+            this.user?.setActivity({ name: `on ${this.guilds.cache.size} servers` });
             console.log(`Entrei como: ${this.user?.username}!`);
             await this.simpleCommandHandler.loadCommands();
         });
@@ -34,5 +36,4 @@ export default class Ayu extends Client {
         this.on("messageCreate", this.simpleCommandHandler.handleCommand);
     
     }
-
 }

@@ -28,7 +28,7 @@ const activeIA = async (message: Message) => {
         } else {
             guild = await prisma.guild.update({
                 where: { guildId: message.guild.id },
-                data: { ia: true }, 
+                data: { ia: true },
             });
         }
 
