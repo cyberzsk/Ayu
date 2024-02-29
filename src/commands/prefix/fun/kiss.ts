@@ -1,18 +1,18 @@
-import { PermissionFlagsBits, type Message, User, EmbedBuilder } from "discord.js"
+import { PermissionFlagsBits, type Message, User, EmbedBuilder } from "discord.js";
 import getPrefix from "../../../utils/getPrefix";
 import Giphy from "../../../system/Giphy";
 import emoji from "../../../settings/bot";
 
 const kissCommand = async (message: Message) => {
     const mentionedUser: User | undefined = message.mentions.users.first();
-    const prefix = await getPrefix(message.guild!!.id)
+    const prefix = await getPrefix(message.guild!!.id);
 
     if (!mentionedUser) {
-        message.reply({ content: `Você precisa mencionar alguém após o comando, exemplo: **${prefix}kiss \`<@sanji>\`**` })
-        return
+        message.reply({ content: `Você precisa mencionar alguém após o comando, exemplo: **${prefix}kiss \`<@sanji>\`**` });
+        return;
     }
 
-    const query = 'anime kiss';
+    const query = "anime kiss";
 
     const giphyClient = new Giphy();
     const power = emoji.powerhug;
@@ -38,11 +38,11 @@ const kissCommand = async (message: Message) => {
 
         message.reply({ content: responseMessage, embeds: [embed] });
     } catch (error) {
-        console.error('Erro ao pesquisar GIFs no Giphy:', error);
-        message.channel.send('Ocorreu um erro ao buscar GIFs no Giphy. Por favor, tente novamente mais tarde.');
+        console.error("Erro ao pesquisar GIFs no Giphy:", error);
+        message.channel.send("Ocorreu um erro ao buscar GIFs no Giphy. Por favor, tente novamente mais tarde.");
     }
 
-}
+};
 
 export default {
     name: "kiss",
@@ -50,4 +50,4 @@ export default {
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.SendMessages],
     action: kissCommand
-}
+};

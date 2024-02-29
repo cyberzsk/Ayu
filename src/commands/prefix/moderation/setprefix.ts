@@ -12,8 +12,8 @@ const setPrefix = async (message: Message, args: string) => {
     const newPrefix = args[0];
 
     if (newPrefix.length > 3) {
-        message.reply({ content: "Você precisa informar um prefixo com menos de 3 caracteres!" })
-        return
+        message.reply({ content: "Você precisa informar um prefixo com menos de 3 caracteres!" });
+        return;
     }
 
     if (!message.guild?.id) {
@@ -49,7 +49,7 @@ const setPrefix = async (message: Message, args: string) => {
 };
 
 export default {
-    name: 'setprefix',
+    name: "setprefix",
     aliases: ["setprefixo"],
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.Administrator],

@@ -1,14 +1,14 @@
-import fs from 'fs';
+import fs from "fs";
 
-const filePath = 'src/settings/bot/emoji.json';
+const filePath = "src/settings/bot/emoji.json";
 
 function readFile(filePath: string): any {
     try {
-        const jsonData = fs.readFileSync(filePath, 'utf-8');
+        const jsonData = fs.readFileSync(filePath, "utf-8");
         const data = JSON.parse(jsonData);
         return data;
     } catch (error) {
-        console.error('Erro ao ler o arquivo JSON:', error);
+        console.error("Erro ao ler o arquivo JSON:", error);
         return null;
     }
 }
@@ -16,4 +16,4 @@ function readFile(filePath: string): any {
 const emoji = readFile(filePath);
 
 
-export default emoji
+export default emoji;

@@ -1,5 +1,5 @@
-import { Client, GatewayIntentBits, Partials } from 'discord.js'
-import SimpleCommandHandler from '../handler/simpleCommandHandler';
+import { Client, GatewayIntentBits, Partials } from "discord.js";
+import SimpleCommandHandler from "../handler/simpleCommandHandler";
 
 
 export default class Ayu extends Client {
@@ -19,7 +19,8 @@ export default class Ayu extends Client {
                 Partials.GuildMember, Partials.Channel,
                 Partials.GuildScheduledEvent, Partials.Reaction,
                 Partials.ThreadMember
-            ]
+            ],
+            failIfNotExists: false
         });
         this.simpleCommandHandler = new SimpleCommandHandler();
         this.token = token;
