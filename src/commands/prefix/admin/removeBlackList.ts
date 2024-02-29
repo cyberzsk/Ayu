@@ -1,16 +1,35 @@
 import { PrismaClient } from "@prisma/client";
-import { PermissionFlagsBits, type Message } from "discord.js"
+import { PermissionFlagsBits, type Message, GuildMember, User } from "discord.js"
 import emoji from "../../../settings/bot";
 
 const prisma = new PrismaClient();
 
-const removeBlackList = async (message: Message) => {
+const removeBlackList = async (message: Message, args: string[]) => {
     const anya = emoji.anya;
     const confirm_gif = emoji.confirm_gif
-    const target = message.mentions.members?.first();
+    let target: GuildMember | User | undefined = undefined;
+
+    if (message.mentions.members?.size) {
+        target = message.mentions.members.first()!;
+    } else {
+        const userId = args[0];
+        if (userId) {
+            try {
+                const user = await message.client.users.fetch(userId);
+                const guildMember = message.guild?.members.cache.get(user.id);
+                target = guildMember || user;
+            } catch (error) {
+                return message.reply(`${anya} **| ID ou usuário inválido!**`);
+            }
+        }
+    }
 
     if (!target) {
-        return message.reply("❌ **|** Você precisa mencionar o usuário que deseja remover da blacklist.");
+        return message.reply("❌ **|** Você precisa mencionar o usuário ou fornecer um ID válido para adicionar à blacklist.");
+    }
+
+    if (target instanceof GuildMember && target.user.bot) {
+        return message.reply({ content: "❌ **|** Você não pode adicionar Bots à minha blacklist." });
     }
 
     try {
@@ -19,22 +38,22 @@ const removeBlackList = async (message: Message) => {
         });
 
         if (!userInDB || !userInDB.blackListId) {
-            return message.reply(`${anya} **|** O usuário ${target.user.username} não está na blacklist.`);
+            return message.reply(`${anya} **|** O usuário \`${target.displayName}\` não está na blacklist.`);
         }
 
         const removedUser = await prisma.blackList.delete({
             where: { id: userInDB.blackListId }
         });
 
-        return message.reply(`${confirm_gif} **|** O usuário \`${target.user.username}\` foi removido da blacklist.`);
+        return message.reply(`${confirm_gif} **|** O usuário \`${target.displayName}\` foi removido da blacklist.`);
     } catch (error) {
         console.error("Erro ao remover usuário da blacklist:", error);
         return message.reply("Ocorreu um erro ao remover o usuário da blacklist. Por favor, tente novamente mais tarde.");
     }
 }
 export default {
-    name: "romove.blacklist",
-    aliases: ["rm.bk"],
+    name: "remove.blacklist",
+    aliases: ["rm.bl"],
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.SendMessages],
     action: removeBlackList

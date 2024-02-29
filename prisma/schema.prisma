@@ -25,10 +25,10 @@ model User {
 model BlackList {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
   punished Boolean
-  authorId   String
-  authorName String
-  punishedId   String  
-  punishedName String
+  authorId   String?
+  authorName String?
+  punishedId   String? 
+  punishedName String?
   User     User[]
 }
 
