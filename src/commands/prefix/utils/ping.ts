@@ -11,8 +11,8 @@ async function pingCommand(message: Message) {
 }
 
 export default {
-    name: 'ping',
-    aliases: ['ws', 'latencia', 'latência', 'latency'],
+    name: "ping",
+    aliases: ["ws", "latencia", "latência", "latency"],
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.SendMessages],
     action: pingCommand

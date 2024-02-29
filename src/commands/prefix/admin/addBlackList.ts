@@ -1,9 +1,9 @@
-import { PrismaClient } from "@prisma/client"
-import { PermissionFlagsBits, type Message, ButtonBuilder, ButtonStyle, ActionRowBuilder, ButtonInteraction, type CollectorFilter, EmbedBuilder, Colors, GuildMember, User } from "discord.js"
-import emoji from "../../../settings/bot"
-import "dotenv/config"
+import { PrismaClient } from "@prisma/client";
+import { PermissionFlagsBits, type Message, ButtonBuilder, ButtonStyle, ActionRowBuilder, ButtonInteraction, type CollectorFilter, EmbedBuilder, Colors, GuildMember, User } from "discord.js";
+import emoji from "../../../settings/bot";
+import "dotenv/config";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 
 const addToBlacklist = async (message: Message, args: string[]) => {
@@ -45,12 +45,12 @@ const addToBlacklist = async (message: Message, args: string[]) => {
         }
 
         const confirmButton = new ButtonBuilder()
-            .setCustomId('button_confirm_blacklist')
-            .setLabel('Confirmar')
+            .setCustomId("button_confirm_blacklist")
+            .setLabel("Confirmar")
             .setStyle(ButtonStyle.Success);
 
         const cancelButton = new ButtonBuilder()
-            .setCustomId('button_cancel')
+            .setCustomId("button_cancel")
             .setLabel("Cancelar")
             .setStyle(ButtonStyle.Danger);
 
@@ -68,9 +68,14 @@ const addToBlacklist = async (message: Message, args: string[]) => {
 
         const collector = confirmationMessage.createMessageComponentCollector({ max: 1, time: 30000 });
 
-        collector.on('collect', async (interaction: ButtonInteraction) => {
-            if (interaction.customId === 'button_confirm_blacklist') {
+        collector.on("collect", async (interaction: ButtonInteraction) => {
+            if (interaction.customId === "button_confirm_blacklist") {
                 try {
+                    if (interaction.user.id != message.author.id) {
+                        interaction.reply({ ephemeral: true, content: `${anya} **| Esta interação não é para você**` });
+                        return;
+                    }
+
                     let userInDB = await prisma.user.findUnique({
                         where: { userid: target?.id }
                     });
@@ -133,14 +138,14 @@ const addToBlacklist = async (message: Message, args: string[]) => {
                     content: `${confirmGif} **|** Ação cancelada!`,
                     embeds: [],
                     components: []
-                })
+                });
             }
         });
 
-        collector.on('end', async (collected) => {
+        collector.on("end", async (collected) => {
             if (collected.size === 0) {
                 await confirmationMessage.edit({
-                    content: 'O tempo para confirmar expirou.',
+                    content: `${anya} **| O tempo para confirmar expirou.**`,
                     embeds: [],
                     components: []
                 });
@@ -150,7 +155,7 @@ const addToBlacklist = async (message: Message, args: string[]) => {
         console.error("Erro ao adicionar usuário à blacklist:", error);
         return message.reply("Ocorreu um erro ao adicionar o usuário à blacklist. Por favor, tente novamente mais tarde.");
     }
-}
+};
 
 export default {
     name: "add.blacklist",
@@ -158,4 +163,4 @@ export default {
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.SendMessages],
     action: addToBlacklist
-}
+};

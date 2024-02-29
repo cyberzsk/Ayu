@@ -1,22 +1,22 @@
-import { type ICommand } from '../interfaces/ICommand';
-import { glob } from 'glob';
-import { Collection, Message } from 'discord.js';
-import emoji from '../settings/bot';
-import getPrefix from '../utils/getPrefix';
-import inBlackList from '../utils/inBlackList';
-import "dotenv/config"
-const { dirname } = require('path');
+import { type ICommand } from "../interfaces/ICommand";
+import { glob } from "glob";
+import { Collection, Message } from "discord.js";
+import emoji from "../settings/bot";
+import getPrefix from "../utils/getPrefix";
+import inBlackList from "../utils/inBlackList";
+import "dotenv/config";
+const { dirname } = require("path");
 
-const appDir = process.env.PWD || dirname(import.meta.require.main?.filename || '');
+const appDir = process.env.PWD || dirname(import.meta.require.main?.filename || "");
 const commands: Collection<string, ICommand> = new Collection();
 
 export default class SimpleCommandHandler {
   isValidModule(module: any): boolean {
     return (
       module.default &&
-      typeof module.default === 'object' &&
-      typeof module.default.name === 'string' &&
-      typeof module.default.action === 'function'
+      typeof module.default === "object" &&
+      typeof module.default.name === "string" &&
+      typeof module.default.action === "function"
     );
   }
 
@@ -28,9 +28,9 @@ export default class SimpleCommandHandler {
   }
 
   async loadCommands() {
-    const commandsGlob = await glob('src/commands/prefix/**/*.ts');
+    const commandsGlob = await glob("src/commands/prefix/**/*.ts");
     for (const commandPath of commandsGlob) {
-      const commandModule = require(appDir + '/' + commandPath);
+      const commandModule = require(appDir + "/" + commandPath);
       if (!this.isValidModule(commandModule)) return;
 
       const command: ICommand = commandModule.default;

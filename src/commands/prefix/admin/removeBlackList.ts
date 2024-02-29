@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import { PermissionFlagsBits, type Message, GuildMember, User } from "discord.js"
+import { PermissionFlagsBits, type Message, GuildMember, User } from "discord.js";
 import emoji from "../../../settings/bot";
 
 const prisma = new PrismaClient();
 
 const removeBlackList = async (message: Message, args: string[]) => {
     const anya = emoji.anya;
-    const confirm_gif = emoji.confirm_gif
+    const confirm_gif = emoji.confirm_gif;
     let target: GuildMember | User | undefined = undefined;
 
     if (message.mentions.members?.size) {
@@ -47,11 +47,11 @@ const removeBlackList = async (message: Message, args: string[]) => {
         console.error("Erro ao remover usuário da blacklist:", error);
         return message.reply("Ocorreu um erro ao remover o usuário da blacklist. Por favor, tente novamente mais tarde.");
     }
-}
+};
 export default {
     name: "remove.blacklist",
     aliases: ["rm.bl"],
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.SendMessages],
     action: removeBlackList
-}
+};

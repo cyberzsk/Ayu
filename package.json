@@ -7,6 +7,9 @@
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint": "^8.57.0",
     "prisma": "^5.10.2"
   },
   "peerDependencies": {
@@ -25,6 +28,6 @@
     "mongoose": "^8.2.0",
     "node-fetch": "^3.3.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.0.0"
   }
 }

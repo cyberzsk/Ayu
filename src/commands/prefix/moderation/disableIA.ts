@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { PermissionFlagsBits, type Message } from "discord.js";
 import emoji from "../../../settings/bot";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 const disableIA = async (message: Message) => {
     if (!message.guild?.id) {
@@ -32,10 +32,10 @@ const disableIA = async (message: Message) => {
         console.error("Erro ao desativar a IA:", error);
         message.reply("Ocorreu um erro ao desativar a IA. Por favor, tente novamente mais tarde.");
     }
-}
+};
 
 export default {
-    name: 'disable.ia',
+    name: "disable.ia",
     aliases: ["dsb.ia"],
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.Administrator],

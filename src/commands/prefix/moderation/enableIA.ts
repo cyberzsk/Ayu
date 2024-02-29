@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { Message, PermissionFlagsBits } from "discord.js";
 import emoji from "../../../settings/bot";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 const activeIA = async (message: Message) => {
     if (!message.guild?.id) {
@@ -37,10 +37,10 @@ const activeIA = async (message: Message) => {
         console.error("Erro ao ativar a IA:", error);
         message.reply("Ocorreu um erro ao ativar a IA. Por favor, tente novamente mais tarde.");
     }
-}
+};
 
 export default {
-    name: 'enable.ia',
+    name: "enable.ia",
     aliases: [],
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.Administrator],

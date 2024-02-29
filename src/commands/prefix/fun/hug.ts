@@ -7,14 +7,14 @@ import getPrefix from "../../../utils/getPrefix";
 
 const hugCommand = async (message: Message) => {
     const mentionedUser: User | undefined = message.mentions.users.first();
-    const prefix = await getPrefix(message.guild!!.id)
+    const prefix = await getPrefix(message.guild!!.id);
 
     if (!mentionedUser) {
-        message.reply({content: `Você precisa mencionar alguém após o comando, exemplo: **${prefix}hug \`<@sanji>\`**`})
-        return
+        message.reply({content: `Você precisa mencionar alguém após o comando, exemplo: **${prefix}hug \`<@sanji>\`**`});
+        return;
     }
 
-    const query = 'anime hug';
+    const query = "anime hug";
 
     const giphyClient = new Giphy();
     const power = emoji.powerhug;
@@ -40,13 +40,13 @@ const hugCommand = async (message: Message) => {
 
         message.reply({ content: responseMessage, embeds: [embed] });
     } catch (error) {
-        console.error('Erro ao pesquisar GIFs no Giphy:', error);
-        message.channel.send('Ocorreu um erro ao buscar GIFs no Giphy. Por favor, tente novamente mais tarde.');
+        console.error("Erro ao pesquisar GIFs no Giphy:", error);
+        message.channel.send("Ocorreu um erro ao buscar GIFs no Giphy. Por favor, tente novamente mais tarde.");
     }
 };
 
 export default {
-    name: 'hug',
+    name: "hug",
     aliases: ["abraçar", "abracar"],
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.SendMessages],

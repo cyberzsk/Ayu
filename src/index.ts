@@ -1,8 +1,8 @@
 import Ayu from "./core/client";
-import "dotenv/config"
+import "dotenv/config";
 
-const token: string = process.env.DISCORD_TOKEN 
+const token: string = process.env.DISCORD_TOKEN; 
 
-const client: Ayu = new Ayu(token)
+const client: Ayu = new Ayu(token);
 
-client.run()
+client.run();

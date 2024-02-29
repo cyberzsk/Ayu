@@ -1,9 +1,9 @@
-import { EmbedBuilder, Message, PermissionFlagsBits } from 'discord.js';
-import SquareCloud from '../../../system/SquareCloud';
-import "dotenv/config"
-import emoji from '../../../settings/bot';
-import { formatDistanceToNow } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
+import { EmbedBuilder, Message, PermissionFlagsBits } from "discord.js";
+import SquareCloud from "../../../system/SquareCloud";
+import "dotenv/config";
+import emoji from "../../../settings/bot";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 const statusCommand = async (message: Message) => {
     try {
@@ -43,15 +43,17 @@ const statusCommand = async (message: Message) => {
             setTimeout(() => {
                 msg.delete();
             }, 30000);
-        }).catch((error: Error) => { console.error(error); });
+        }).catch((error: Error) => {
+ console.error(error); 
+});
     } catch (error) {
-        console.error('Erro ao buscar status do aplicativo:', error);
-        message.channel.send('Ocorreu um erro ao buscar o status do aplicativo. Por favor, tente novamente mais tarde.');
+        console.error("Erro ao buscar status do aplicativo:", error);
+        message.channel.send("Ocorreu um erro ao buscar o status do aplicativo. Por favor, tente novamente mais tarde.");
     }
 };
 
 export default {
-    name: 'status',
+    name: "status",
     aliases: ["st"],
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.SendMessages],
