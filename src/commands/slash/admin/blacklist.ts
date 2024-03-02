@@ -14,7 +14,7 @@ export default {
                 type: ApplicationCommandOptionType.Subcommand
             },
             {
-                name: "adcionar",
+                name: "adicionar",
                 description: "[ Admin ] Adicione alguém à minha BlackList.",
                 type: ApplicationCommandOptionType.Subcommand,
                 options: [
