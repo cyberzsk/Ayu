@@ -1,9 +1,10 @@
-import { Client, GatewayIntentBits, Partials } from "discord.js";
-import SimpleCommandHandler from "../handler/simpleCommandHandler";
+import { Client, CommandInteraction, GatewayIntentBits, Partials, type CacheType, ChatInputCommandInteraction } from "discord.js";
+import CommandHandler from "../handler/commandHandler";
+import chalk from "chalk";
 
 
 export default class Ayu extends Client {
-    private simpleCommandHandler: SimpleCommandHandler;
+    private simpleCommandHandler: CommandHandler;
 
     constructor(token: string) {
         super({
@@ -22,7 +23,7 @@ export default class Ayu extends Client {
             ],
             failIfNotExists: false
         });
-        this.simpleCommandHandler = new SimpleCommandHandler();
+        this.simpleCommandHandler = new CommandHandler();
         this.token = token;
     }
 
@@ -30,11 +31,20 @@ export default class Ayu extends Client {
         this.login(this.token as string);
         this.on("ready", async () => {
             this.user?.setActivity({ name: `on ${this.guilds.cache.size} servers` });
-            console.log(`Entrei como: ${this.user?.username}!`);
             await this.simpleCommandHandler.loadCommands();
+
+            await this.simpleCommandHandler.buildSlashCommands(this);
+
+            console.log(chalk.blueBright("Entrei como:"), chalk.gray(this.user?.username + "!"));
+
         });
 
         this.on("messageCreate", this.simpleCommandHandler.handleCommand);
-    
+
+        this.on("interactionCreate", async (interaction) => {
+            if (!interaction.isChatInputCommand()) return;
+
+            await this.simpleCommandHandler.loadSlashCommands(interaction);
+        });
     }
 }

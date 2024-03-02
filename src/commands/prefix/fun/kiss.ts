@@ -1,6 +1,6 @@
 import { PermissionFlagsBits, type Message, User, EmbedBuilder } from "discord.js";
 import getPrefix from "../../../utils/getPrefix";
-import Giphy from "../../../system/Giphy";
+import Giphy from "../../../classes/integration/Giphy";
 import emoji from "../../../settings/bot";
 
 const kissCommand = async (message: Message) => {

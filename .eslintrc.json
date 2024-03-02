@@ -15,7 +15,6 @@
         "quotes": "warn",
         "brace-style": "warn",
         "semi":"warn",
-        //"camelcase":"ignore",
         "no-duplicate-imports":"warn",
         "no-extra-semi":"warn"  
     }

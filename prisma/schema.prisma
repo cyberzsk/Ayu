@@ -22,15 +22,6 @@ model User {
   blackListId String? @db.ObjectId
 }
 
-model Wallet {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  balance String
-}
-
-model Achievements {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-}
-
 model BlackList {
   id           String  @id @default(auto()) @map("_id") @db.ObjectId
   punished     Boolean
@@ -40,6 +31,16 @@ model BlackList {
   punishedName String?
   User         User[]
 }
+
+model Wallet {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  balance String
+}
+
+model Achievements {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
 
 model Guild {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId

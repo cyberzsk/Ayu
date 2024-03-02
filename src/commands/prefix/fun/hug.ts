@@ -1,6 +1,6 @@
 import { EmbedBuilder, Message, PermissionFlagsBits, User } from "discord.js";
 import "dotenv/config";
-import Giphy from "../../../system/Giphy";
+import Giphy from "../../../classes/integration/Giphy";
 import emoji from "../../../settings/bot";
 import getPrefix from "../../../utils/getPrefix";
 
