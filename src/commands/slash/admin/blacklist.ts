@@ -9,7 +9,7 @@ export default {
         type: ApplicationCommandType.ChatInput,
         options: [
             {
-                name: "vizualizar",
+                name: "visualizar",
                 description: "[ Admin ] Veja as pessoas que foram para na minha blacklist",
                 type: ApplicationCommandOptionType.Subcommand
             },
