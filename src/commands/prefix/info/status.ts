@@ -1,5 +1,5 @@
 import { EmbedBuilder, Message, PermissionFlagsBits } from "discord.js";
-import SquareCloud from "../../../system/SquareCloud";
+import SquareCloud from "../../../classes/integration/SquareCloud";
 import "dotenv/config";
 import emoji from "../../../settings/bot";
 import { formatDistanceToNow } from "date-fns";
@@ -7,7 +7,7 @@ import { ptBR } from "date-fns/locale";
 
 const statusCommand = async (message: Message) => {
     try {
-        const appId: string = process.env.SQAURECLOUD_ID;
+        const appId: string = process.env.SQUARECLOUD_ID;
         const token: string = process.env.SQUARECLOUD_TOKEN;
 
         const squareCloud: SquareCloud = new SquareCloud(appId, token);

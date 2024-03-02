@@ -1,5 +1,5 @@
 import { Message, PermissionFlagsBits } from "discord.js";
-import Gemini from "../../../system/GeminiIA";
+import Gemini from "../../../classes/integration/GeminiIA";
 import emoji from "../../../settings/bot";
 import isIAEnabled from "../../../utils/isIAEnabled";
 
