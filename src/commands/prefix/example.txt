@@ -1,0 +1,11 @@
+const exemplo = async (message: Message, args: string) => {
+
+}
+
+export default {
+    name: "",
+    aliases: [],
+    isOwnerGuild: false,
+    permission: [PermissionFlagsBits.SendMessages],
+    action: exemplo
+}

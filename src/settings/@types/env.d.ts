@@ -3,8 +3,9 @@ declare namespace NodeJS {
         DISCORD_TOKEN: string;
         DATABASE_URL: string;
         SQUARECLOUD_TOKEN: string;
-        SQAURECLOUD_ID: string;
+        SQUARECLOUD_ID: string;
         GIPHYAPI_TOKEN: string;
         GEMINIAPI_TOKEN: string;
+        BOT_OWNERID: string;
     }
 }

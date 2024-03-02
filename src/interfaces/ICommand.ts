@@ -1,5 +1,5 @@
-import { type PermissionResolvable } from 'discord.js';
-import { type ICommandAction } from './ICommandAction';
+import { type PermissionResolvable } from "discord.js";
+import { type ICommandAction } from "./ICommandAction";
 
 export interface ICommand {
     name: string;

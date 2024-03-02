@@ -1,5 +1,5 @@
 import { Message, PermissionFlagsBits } from "discord.js";
-import Gemini from "../../../system/GeminiIA";
+import Gemini from "../../../classes/integration/GeminiIA";
 import emoji from "../../../settings/bot";
 import isIAEnabled from "../../../utils/isIAEnabled";
 
@@ -8,7 +8,7 @@ const gemini = async (message: Message, args: string) => {
         const loading = emoji.loading;
         const msg = await message.reply({ content: `${loading} Aguarde uns segundos...` });
 
-        const iaEnabled = await isIAEnabled(message.guild?.id || '');
+        const iaEnabled = await isIAEnabled(message.guild?.id || "");
         if (!iaEnabled) {
             await msg.edit("A IA não está ativada neste servidor.");
             return;
@@ -29,8 +29,8 @@ const gemini = async (message: Message, args: string) => {
 };
 
 export default {
-    name: 'a',
-    aliases: ['ia'],
+    name: "a",
+    aliases: ["ia"],
     isOwnerGuild: false,
     permission: [PermissionFlagsBits.SendMessages],
     action: gemini
